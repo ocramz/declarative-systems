@@ -1,7 +1,6 @@
 sudo: 
   false
 
-
 language: 
   c 
 
@@ -15,6 +14,7 @@ services:
 
 before_install:
   - curl -sSL https://get.haskellstack.org/ | sh
+  - stack setup
 
 script:
   - stack build
