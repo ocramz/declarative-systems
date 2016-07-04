@@ -18,8 +18,13 @@ library
   exposed-modules:     Lib
                      , System.Declarative
                      , System.Declarative.Observe
+                     , System.Declarative.Entities.Environment
+                     , System.Declarative.Entities.File
+                     , System.Declarative.Entities.Process
   build-depends:       base >= 4.7 && < 5
                      , filepath
+                     , Hspec
+                     , dockerfile
   default-language:    Haskell2010
 
 executable declarative-systems-exe
