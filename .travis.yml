@@ -13,7 +13,8 @@ services:
 #   directories:
 #   - $HOME/.stack
 
+before_install:
+  - curl -sSL https://get.haskellstack.org/ | sh
+
 script:
-#  - make build
-#  - make run_travis
-  - ls -lsA
+  - stack build
