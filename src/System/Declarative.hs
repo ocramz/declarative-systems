@@ -1,20 +1,20 @@
-{-# language TypeSynonymInstances #-}
 module System.Declarative where
 
 
--- import System.Declarative.Observe
+import System.Declarative.Observe
 
 import qualified System.Environment as E
 
 
 
 
+-- | Observable: what state is an entity in?
+class Observable a where
+  observe :: a -> IO (Maybe String)
 
-class Observe a where
-  observe :: a -> IO (Maybe a)
 
-
-class Control a where
+-- | Controllable: force an entity into a given state
+class Controllable a where
   control :: a -> v -> IO ()
 
 
@@ -24,8 +24,15 @@ class Control a where
 
 -- * Environment variables 
 
-instance Observe String where
-  observe = E.lookupEnv
+newtype Env = Env String
+
+lookupEnv' :: Env -> IO (Maybe String)
+lookupEnv' (Env s) = E.lookupEnv s
+
+instance Observable Env where
+  observe = lookupEnv'
+
+
 
 
 
